@@ -27,6 +27,9 @@ class App extends React.Component{
         }
       }
     }
+    handleLogin = (userObj) => {
+      this.setState({activeUser: userObj})
+    }
     handleLogout = () => {
       this.setState({activeUser: null})
     }
@@ -44,7 +47,7 @@ class App extends React.Component{
               <RecipesPage activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/login">
-              <LoginPage/>
+              <LoginPage handleLogin={this.handleLogin}/>
             </Route>
             <Route exact path="/signup">
               <SignupPage />

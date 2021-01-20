@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import RecipesNavbar from '../components/RecipesNavbar';
 
 class RecipesPage extends React.Component {
@@ -6,6 +7,9 @@ class RecipesPage extends React.Component {
         super(props);
     }
     render() {
+        if( ! this.props.activeUser){
+            return <Redirect push to="/#/login" />
+        }
         return (
             <div className="c-recipes-page">recipes</div>
         )
