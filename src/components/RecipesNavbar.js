@@ -4,15 +4,15 @@ import {  Nav, Navbar } from "react-bootstrap";
 // Props:
 //  activeUser - an object describing the user
 const RecipesNavbar = function(props) {
-    const handleLogout = function(){};
+    const {activeUser, handleLogout} = props;
 
-    const loginEl = (props.activeUser == null) ? <Nav.Link href="/#/login">Login</Nav.Link>  : null;
-    const signupEl = (props.activeUser == null) ?<Nav.Link href="/#/signup">Signup</Nav.Link>  : null;
-
-    const logoutEl = (props.activeUser != null) ?   <Nav.Link onclick={handleLogout}>Logout</Nav.Link> : null;
+    const loginEl = ( ! activeUser)  ?  <Nav.Link href="/#/login">Login</Nav.Link>  : null;
+    const signupEl = ( ! activeUser) ?  <Nav.Link href="/#/signup">Signup</Nav.Link>  : null;
+    const logoutEl = (activeUser) ?  <Nav.Link onClick={handleLogout}>Logout</Nav.Link> : null;
     return (
         <Navbar bg="light" expand="lg">
   <Navbar.Brand href="/">RecipesBook</Navbar.Brand>
+  
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
@@ -24,9 +24,10 @@ const RecipesNavbar = function(props) {
         {loginEl}
         {signupEl}
         {logoutEl}
-      
+       
 
     </Nav>
+    <Nav> {activeUser ? 'Hello ' + activeUser.fname : ''}</Nav>
 </Navbar>
     )
 }

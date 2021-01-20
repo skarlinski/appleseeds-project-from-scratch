@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RecipesPage from './pages/RecipesPage';
 import SignupPage from './pages/signupPage';
+import RecipesNavbar from './components/RecipesNavbar';
 
 // state:
 //  activeuser: obj - if a user is logged in, this has an object describing the user. 
@@ -26,15 +27,21 @@ class App extends React.Component{
         }
       }
     }
+    handleLogout = () => {
+      this.setState({activeUser: null})
+    }
     render() {return (
       <HashRouter>
-        {/* <Route exact path={['/', '/recipes']}>
-        <RecipesNavbar/>
-        </Route> */}
+        <Route exact path={['/', '/recipes']}>
+        <RecipesNavbar handleLogout={this.handleLogout} activeUser={this.state.activeUser}/>
+        </Route>
         <Container>
           <Switch>
             <Route exact path="/">
               <HomePage activeUser={this.state.activeUser}/>
+            </Route>
+            <Route exact path="/recipes">
+              <RecipesPage activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/login">
               <LoginPage/>
@@ -42,9 +49,7 @@ class App extends React.Component{
             <Route exact path="/signup">
               <SignupPage />
             </Route>
-            <Route exact path="/recipes">
-              <RecipesPage activeUser={this.state.activeUser}/>
-            </Route>
+
           </Switch> 
       </Container>
       </HashRouter>

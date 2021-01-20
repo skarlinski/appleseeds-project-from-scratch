@@ -7,10 +7,8 @@ class HomePage extends React.Component {
     }
     render() {
         return (
-            <div>
-                <RecipesNavbar activeUser={this.props.activeUser}/>
+
                 <div className="c-home-page">Homepage</div>
-            </div>
         )
     }
 }
