@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import RecipesPage from './pages/RecipesPage';
 import SignupPage from './pages/signupPage';
 import RecipesNavbar from './components/RecipesNavbar';
+import recipeJSON from './data/recipes.json';
 
 // state:
 //  activeuser: obj - if a user is logged in, this has an object describing the user. 
@@ -24,9 +25,13 @@ class App extends React.Component{
           fname: 'Yaron',
           lname: 'Karlinski',
           id: 1
-        }
+        },
+        allRecipes: recipeJSON,
       }
     }
+    addRecipe = (recipeObj) => {
+      this.setState({allRecipes: this.state.allRecipes.concat(recipeObj)})
+    } 
     handleLogin = (userObj) => {
       this.setState({activeUser: userObj})
     }
@@ -44,7 +49,7 @@ class App extends React.Component{
               <HomePage activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/recipes">
-              <RecipesPage activeUser={this.state.activeUser}/>
+              <RecipesPage addRecipe={this.addRecipe} allRecipes={this.state.allRecipes} activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/login">
               <LoginPage handleLogin={this.handleLogin}/>

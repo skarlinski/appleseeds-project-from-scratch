@@ -23,10 +23,11 @@ class LoginPage extends React.Component {
                 return;
                 // We will login the user
                 // return the found user
-            }
         }
-        alert('user not found')
+  
+        alert('user not found');
         // alert that the user does not exist
+        }
     }
     render() {
         // Steps to login
