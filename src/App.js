@@ -19,10 +19,10 @@ class App extends React.Component{
    
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = {  
         //  activeUser: null,
         activeUser: { 
-          fname: 'Yaron',
+          fname: 'Yaronss',
           lname: 'Karlinski',
           id: 1
         },
