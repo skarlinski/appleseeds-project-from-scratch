@@ -15,22 +15,39 @@ import recipeJSON from './data/recipes.json';
 // state:
 //  activeuser: obj - if a user is logged in, this has an object describing the user. 
 //              if Noone is logged in, it equals null
+
 class App extends React.Component{
-   
+   // To use localStorage:
+   // 1. Check if the key already exists  e.g  if(localStorage.getItem('localRecipes'))
+   // 2. Convert value to Object - JSON.parse
+   // 3. Put into state
+   // 4. Everytime the state changes, also update the localstorage (using JSON.stringify)
     constructor(props) {
       super(props);
+      let allRecipes;
+      if(localStorage.getItem('localRecipes')) {
+        allRecipes = JSON.parse(localStorage.getItem('localRecipes'));
+      }
+      else{
+        allRecipes = recipeJSON;
+      }
       this.state = {  
         //  activeUser: null,
-        activeUser: { 
-          fname: 'Yaronss',
-          lname: 'Karlinski',
-          id: 1
-        },
-        allRecipes: recipeJSON,
+        activeUser:{
+          "id": 1,
+          "fname": "Yaron",
+          "lname": "Doe",
+          "email": "skarlinski@gmail.com",
+          "pwd": "123"
+      },
+        allRecipes: allRecipes,
       }
     }
     addRecipe = (recipeObj) => {
-      this.setState({allRecipes: this.state.allRecipes.concat(recipeObj)})
+      this.setState({allRecipes: this.state.allRecipes.concat(recipeObj)});
+      localStorage.setItem('localRecipes', JSON.stringify(
+        this.state.allRecipes.concat(recipeObj)
+      ))
     } 
     handleLogin = (userObj) => {
       this.setState({activeUser: userObj})
