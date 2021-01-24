@@ -17,6 +17,11 @@ import recipeJSON from './data/recipes.json';
 //              if Noone is logged in, it equals null
 
 class App extends React.Component{
+
+  //// THESE ARE SOME CHANGES
+  // They will only appear in the parse branch
+
+
    // To use localStorage:
    // 1. Check if the key already exists  e.g  if(localStorage.getItem('localRecipes'))
    // 2. Convert value to Object - JSON.parse
