@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import users from '../data/users.json';
+import Parse from 'parse';
+import UserModel from '../models/User'
 
 class LoginPage extends React.Component {
     constructor(props){
@@ -16,18 +17,13 @@ class LoginPage extends React.Component {
         }
     }
     validateLogin = () => {
-        for( let i = 0; i< users.length; i++) {
-            if( users[i].pwd == this.state.pwd && users[i].email == this.state.email) {
-                this.props.handleLogin(users[i]);
-                window.location = '/#/recipes'
-                return;
-                // We will login the user
-                // return the found user
-        }
-  
-        alert('user not found');
-        // alert that the user does not exist
-        }
+        Parse.User.logIn(this.state.email ,this.state.pwd).then((user) => {
+            // Do stuff after successful login            console.log('Logged in user', user);
+            this.props.handleLogin(new UserModel(user));
+            window.location = '/#/recipes';
+        }).catch(error => {
+            console.error('Error while logging in user', error);
+        })
     }
     render() {
         // Steps to login

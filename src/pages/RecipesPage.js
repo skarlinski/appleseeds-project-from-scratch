@@ -3,6 +3,9 @@ import { Button, Row, Jumbotron, Modal, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import './RecipesPage.css'
 import RecipeCard from '../components/RecipeCard';
+
+import Parse from 'parse';
+import RecipeModel from '../models/RecipeModel';
 class RecipesPage extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +14,7 @@ class RecipesPage extends React.Component {
             recipeDesc: '',
             recipeImg: '',
             isModalActive: false,
+            userRecipes: []
         }
     }
     openModal = () => {
@@ -32,14 +36,26 @@ class RecipesPage extends React.Component {
         this.closeModal();
         this.props.addRecipe(newRecipe);
     }
+    componentDidMount(){
+        const Recipe = Parse.Object.extend('Recipe');
+        const query = new Parse.Query(Recipe);
+        query.equalTo("userId",  Parse.User.current());
+        query.find().then((results) => {
+                const recipes = results.map( (res) => {
+                    return new RecipeModel(res)
+                });
+                this.setState({userRecipes: recipes})
+       
+        }, (error) => {
+     
+        console.error('Error while fetching Recipe', error);
+        });
+    }
     render() {
         if( ! this.props.activeUser){
             return <Redirect push to="/#/login" />
         }
-        const filteredRecipes = this.props.allRecipes.filter( (recipe) => {  // immutable - the original array is not changed
-            return this.props.activeUser.id === recipe.userId;
-        })
-        const recipeElements = filteredRecipes.map((recipe) => {
+        const recipeElements = this.state.userRecipes.map((recipe) => {
             return (<RecipeCard key={recipe.id} name={recipe.name} img={recipe.img} desc={recipe.desc}/>);
         })
         return (
@@ -49,7 +65,6 @@ class RecipesPage extends React.Component {
                 <Button className="ml-auto" onClick={this.openModal}> Add Recipe</Button>
                 </Jumbotron>
                 <Row className="justify-content-between">
-                
                 {recipeElements}
                 </Row>
                 

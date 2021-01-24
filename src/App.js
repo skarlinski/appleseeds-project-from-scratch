@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Parse from 'parse';  
 
 import HomePage from './pages/HomePage';
 
@@ -10,7 +11,11 @@ import LoginPage from './pages/LoginPage';
 import RecipesPage from './pages/RecipesPage';
 import SignupPage from './pages/signupPage';
 import RecipesNavbar from './components/RecipesNavbar';
-import recipeJSON from './data/recipes.json';
+Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+Parse.initialize(
+  'ALRDAKbeOO0Ypv3DP0UmDVFYWuCqsN1Ds4YSyAW1', // This is your Application ID
+  'EuOVW5CF3Hoipwgq4zDaiPMi54Jb6klJ6FlX0ZjO' // This is your Javascript key
+);
 
 // state:
 //  activeuser: obj - if a user is logged in, this has an object describing the user. 
@@ -29,23 +34,10 @@ class App extends React.Component{
    // 4. Everytime the state changes, also update the localstorage (using JSON.stringify)
     constructor(props) {
       super(props);
-      let allRecipes;
-      if(localStorage.getItem('localRecipes')) {
-        allRecipes = JSON.parse(localStorage.getItem('localRecipes'));
-      }
-      else{
-        allRecipes = recipeJSON;
-      }
+
       this.state = {  
-        //  activeUser: null,
-        activeUser:{
-          "id": 1,
-          "fname": "Yaron",
-          "lname": "Doe",
-          "email": "skarlinski@gmail.com",
-          "pwd": "123"
-      },
-        allRecipes: allRecipes,
+         activeUser: null,
+
       }
     }
     addRecipe = (recipeObj) => {
@@ -71,7 +63,7 @@ class App extends React.Component{
               <HomePage activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/recipes">
-              <RecipesPage addRecipe={this.addRecipe} allRecipes={this.state.allRecipes} activeUser={this.state.activeUser}/>
+              <RecipesPage addRecipe={this.addRecipe}  activeUser={this.state.activeUser}/>
             </Route>
             <Route exact path="/login">
               <LoginPage handleLogin={this.handleLogin}/>
