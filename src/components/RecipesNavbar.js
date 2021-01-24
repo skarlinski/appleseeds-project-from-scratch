@@ -11,7 +11,7 @@ const RecipesNavbar = function(props) {
     const logoutEl = (activeUser) ?  <Nav.Link onClick={handleLogout}>Logout</Nav.Link> : null;
     return (
         <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="/">RecipesBook</Navbar.Brand>
+  <Navbar.Brand href="/#/">RecipesBook</Navbar.Brand>
   
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">

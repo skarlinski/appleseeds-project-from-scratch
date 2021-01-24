@@ -34,7 +34,7 @@ class RecipesPage extends React.Component {
     }
     render() {
         if( ! this.props.activeUser){
-            return <Redirect push to="/#/login" />
+            return <Redirect push to="/login" />
         }
         const filteredRecipes = this.props.allRecipes.filter( (recipe) => {  // immutable - the original array is not changed
             return this.props.activeUser.id === recipe.userId;
