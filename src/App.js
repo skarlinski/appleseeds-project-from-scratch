@@ -38,7 +38,8 @@ class App extends React.Component{
           "fname": "Yaron",
           "lname": "Doe",
           "email": "skarlinski@gmail.com",
-          "pwd": "123"
+          "pwd": "123",
+          
       },
         allRecipes: allRecipes,
       }

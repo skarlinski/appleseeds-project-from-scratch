@@ -31,16 +31,27 @@ class RecipesPage extends React.Component {
             userId: this.props.activeUser.id,
             id: this.props.allRecipes.length + 1
         }
+
         this.closeModal();
         this.props.addRecipe(newRecipe);
+        this.setState({
+            recipeName: '',
+            recipeDesc: '',
+            recipeImg: '',
+            recipeDifficulty: 1,
+        })
     }
     render() {
+        
         if( ! this.props.activeUser){
             return <Redirect push to="/login" />
         }
         const filteredRecipes = this.props.allRecipes.filter( (recipe) => {  // immutable - the original array is not changed
             return this.props.activeUser.id === recipe.userId;
         })
+
+
+        
         const easyRecipes = filteredRecipes.filter(recipe => recipe.difficulty === 1).length;
         const difficultRecipes = filteredRecipes.filter(recipe => recipe.difficulty === 2).length;
         
@@ -104,10 +115,13 @@ class RecipesPage extends React.Component {
                         <Form.Label>Image</Form.Label>
                         <Form.Control type="text" 
                         onChange={(event) => {this.setState({recipeImg: event.target.value})}} 
-                        placeholder="" value={this.state.recipeImg} />
+                        placeholder="" 
+                        value={this.state.recipeImg} />
 
                         <Form.Label>Difficulty</Form.Label>
-                        <Form.Control value={this.state.recipeDifficulty} onChange={(event) => {
+                        <Form.Control 
+                        value={this.state.recipeDifficulty} 
+                        onChange={(event) => {
                             this.setState({recipeDifficulty: event.target.value})
                         }} 
                         as="select" custom>
