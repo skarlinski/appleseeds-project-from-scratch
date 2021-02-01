@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/appleseeds-project-from-scratch/static/css/main.51c062d1.chunk.css",
+    "main.js": "/appleseeds-project-from-scratch/static/js/main.e8d87dca.chunk.js",
+    "main.js.map": "/appleseeds-project-from-scratch/static/js/main.e8d87dca.chunk.js.map",
+    "runtime-main.js": "/appleseeds-project-from-scratch/static/js/runtime-main.50bdad84.js",
+    "runtime-main.js.map": "/appleseeds-project-from-scratch/static/js/runtime-main.50bdad84.js.map",
+    "static/css/2.150d169a.chunk.css": "/appleseeds-project-from-scratch/static/css/2.150d169a.chunk.css",
+    "static/js/2.28250432.chunk.js": "/appleseeds-project-from-scratch/static/js/2.28250432.chunk.js",
+    "static/js/2.28250432.chunk.js.map": "/appleseeds-project-from-scratch/static/js/2.28250432.chunk.js.map",
+    "static/js/3.2aff58c6.chunk.js": "/appleseeds-project-from-scratch/static/js/3.2aff58c6.chunk.js",
+    "static/js/3.2aff58c6.chunk.js.map": "/appleseeds-project-from-scratch/static/js/3.2aff58c6.chunk.js.map",
+    "index.html": "/appleseeds-project-from-scratch/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/appleseeds-project-from-scratch/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.51c062d1.chunk.css.map": "/appleseeds-project-from-scratch/static/css/main.51c062d1.chunk.css.map",
+    "static/js/2.28250432.chunk.js.LICENSE.txt": "/appleseeds-project-from-scratch/static/js/2.28250432.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.50bdad84.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.28250432.chunk.js",
+    "static/css/main.51c062d1.chunk.css",
+    "static/js/main.e8d87dca.chunk.js"
+  ]
+}
