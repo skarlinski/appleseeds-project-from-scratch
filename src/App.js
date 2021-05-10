@@ -21,7 +21,6 @@ class App extends React.Component{
   
     constructor(props) {
       super(props);
-      let usersData;
 
 
 
@@ -30,6 +29,8 @@ class App extends React.Component{
       // 2) When loading the page: We check if we have localStorage info.
            // if we have, we use the localStorage info and ignore the json
            // if we don't, we simply use the JSON data
+
+
       let recipesData = [];
 
       if(localStorage.localRecipes) {
@@ -38,9 +39,18 @@ class App extends React.Component{
       else{
         recipesData = RecipesJSON;
       }
+    
+      let usersData = [];
+      if(localStorage.localUsers) {
+        usersData = JSON.parse(localStorage.localUsers);
+      }
+      else{
+        usersData = userJSON;
+      }
+
 
       this.state = {
-         allUsers: userJSON,
+         allUsers: usersData,
          allRecipes: recipesData,
          //activeUser: null
         activeUser: {
@@ -52,6 +62,8 @@ class App extends React.Component{
       }
     }
     addUser = (newUser) =>{
+      const localUsersString = JSON.stringify(this.state.allUsers.concat(newUser));
+      localStorage.localUsers = localUsersString;
       this.setState({
         activeUser: newUser,
         allUsers: this.state.allUsers.concat(newUser)
