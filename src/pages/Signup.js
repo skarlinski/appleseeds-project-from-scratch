@@ -15,7 +15,8 @@ class Signup extends React.Component{
             name: this.state.name,
             pwd: this.state.pwd,
         }
-        this.props.addUser(newUserObj)
+        this.props.addUser(newUserObj);
+        window.location.href="/#/recipes";
     }
     render(){
         return (

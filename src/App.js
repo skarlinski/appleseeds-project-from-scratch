@@ -11,7 +11,7 @@ import HomePage from './pages/HomePage';
 import RecipesNavbar from './components/RecipesNavbar';
 import { Container } from 'react-bootstrap';
 import userJSON from './data/users.json';
-
+import RecipesJSON from './data/recipes.json';
 // App is the main component for our Recipe app
 // State:
 // activeUser: Either null, if no user is logged in, or a user object if a user is logged in
@@ -26,13 +26,14 @@ class App extends React.Component{
       else {usersData = userJSON}
       this.state = {
          allUsers: usersData,
-         activeUser: null
-        // activeUser: {
-        //   id: 1,
-        //   name: 'Yaron',
-        //   email: 'skarlinski@gmail.com',
-        //   pwd: '123'
-        // }
+         allRecipes: RecipesJSON,
+         //activeUser: null
+        activeUser: {
+          id: 1,
+          name: 'Yaron',
+          email: 'skarlinski@gmail.com',
+          pwd: '123'
+        }
       }
     }
     addUser = (newUser) =>{
@@ -42,6 +43,17 @@ class App extends React.Component{
       })
       // localStorage['allUsers'] = localStorage['allUsers'].push(newUser) // Will not work sas localStorage is string
 
+    }
+
+    addRecipe = (newRecipe) => {
+
+      //NewRecipe is an object with 
+      // name, desc, img, userId, id
+      this.setState(
+        {
+          allRecipes: this.state.allRecipes.concat(newRecipe)
+        }
+      )
     }
     login = (userObj) => {
       this.setState({
@@ -68,8 +80,11 @@ class App extends React.Component{
           </Route>
           <Route exact path="/recipes">
             <RecipesPage 
-            activeUser={this.state.activeUser}>
-
+            activeUser={this.state.activeUser}
+            allRecipes={this.state.allRecipes}
+            addRecipe={this.addRecipe}
+            >
+            
             </RecipesPage>
           </Route>
           <Route exact path="/login">
