@@ -37,7 +37,7 @@ class Login extends React.Component{
 
         if(foundUser) {
             this.props.login(foundUser);
-            window.location.href = '/#/recipes'
+            window.location.href = '/#/recipes';
         }
         else{
             alert(" Incorrect Email or Password");

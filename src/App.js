@@ -35,7 +35,7 @@ class App extends React.Component{
         // }
       }
     }
-    signup = (newUser) =>{
+    addUser = (newUser) =>{
       this.setState({
         activeUser: newUser,
         allUsers: this.state.allUsers.concat(newUser)
@@ -79,7 +79,7 @@ class App extends React.Component{
             />
           </Route>
           <Route exact path="/signup"> 
-            <Signup></Signup>
+            <Signup addUser={this.addUser}/>
           </Route>
           </Container>
       </HashRouter>
