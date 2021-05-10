@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import RecipesPage from './pages/RecipesPage';
 import HomePage from './pages/HomePage';
 import RecipesNavbar from './components/RecipesNavbar';
+import { Container } from 'react-bootstrap';
 
 // App is the main component for our Recipe app
 // State:
@@ -19,15 +20,17 @@ class App extends React.Component{
     constructor(props) {
       super(props);
       this.state = {
-        // activeUser: null
-        activeUser: {
-          id: 1,
-          name: 'Yaron',
-          email: 'skarlinski@gmail.com',
-          pwd: '123'
-        }
+         activeUser: null
+        // activeUser: {
+        //   id: 1,
+        //   name: 'Yaron',
+        //   email: 'skarlinski@gmail.com',
+        //   pwd: '123'
+        // }
       }
     }
+
+
     logout = () => {
       this.setState({
         activeUser: null,
@@ -35,17 +38,22 @@ class App extends React.Component{
     }
     render() {return (
       <HashRouter>
+
           <Route exact path={['/', '/recipes']}>
             <RecipesNavbar 
             activeUser={this.state.activeUser}
             logout={this.logout}
             />
           </Route>
+          <Container>
           <Route exact path="/">
              <HomePage></HomePage>
           </Route>
           <Route exact path="/recipes">
-            <RecipesPage activeUser={this.state.activeUser}></RecipesPage>
+            <RecipesPage 
+            activeUser={this.state.activeUser}>
+
+            </RecipesPage>
           </Route>
           <Route exact path="/login">
             <Login></Login>
@@ -53,6 +61,7 @@ class App extends React.Component{
           <Route exact path="/signup"> 
             <Signup></Signup>
           </Route>
+          </Container>
       </HashRouter>
     );
   }

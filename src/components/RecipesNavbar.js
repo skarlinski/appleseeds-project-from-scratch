@@ -8,9 +8,13 @@ class RecipesNavbar extends React.Component{
 
     }
     render(){
-
+        // Show the user managment links conditionally:
+        // If activeUser exists, then a user is logged in
+        // If activeUser Does not exist - Render login + signup
+        // If activeUser exists - Render si
         const loginEl = ( ! this.props.activeUser) ? <Nav.Link href="/#/login">Login</Nav.Link> : null
         const signupEl = ( ! this.props.activeUser) ? <Nav.Link href="/#/signup">Signup</Nav.Link> : null
+        const nameEl = (this.props.activeUser) ? <Nav.Link>Hello {this.props.activeUser.name}</Nav.Link> : null
         const logoutEl = (this.props.activeUser) ?  
         <Nav.Link href="/#/" onClick={ () => this.props.logout()}>
             Log out
@@ -29,6 +33,7 @@ class RecipesNavbar extends React.Component{
                     {loginEl}
                     {signupEl}
                     {logoutEl}
+                    {nameEl}
                 </Nav>
 
 
